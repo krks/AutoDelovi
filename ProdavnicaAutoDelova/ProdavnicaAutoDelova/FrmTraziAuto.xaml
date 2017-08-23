@@ -1,0 +1,20 @@
+﻿<Window x:Class="ProdavnicaAutoDelova.FrmTraziAuto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProdavnicaAutoDelova"
+        mc:Ignorable="d"
+        Title="frmTraziAuto" Height="350" Width="525">
+    <Grid>
+        <Label x:Name="label" Content="Sifra auto dela" HorizontalAlignment="Left" Margin="30,22,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbSifraAutoDela" HorizontalAlignment="Left" Height="23" Margin="156,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" PreviewTextInput="tbSifraAutoDela_PreviewTextInput"/>
+        <Button x:Name="btnProvera" Content="Provera" HorizontalAlignment="Left" Margin="343,26,0,0" VerticalAlignment="Top" Width="75" Click="btnProvera_Click"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="55,67,0,0" VerticalAlignment="Top" Height="181" Width="363">
+            <DataGrid.DataContext>
+                <local:AutoDeo/>
+            </DataGrid.DataContext>
+        </DataGrid>
+
+    </Grid>
+</Window>

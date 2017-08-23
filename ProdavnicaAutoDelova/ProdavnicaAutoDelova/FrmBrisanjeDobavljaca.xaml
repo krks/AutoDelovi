@@ -1,0 +1,19 @@
+﻿<Window x:Class="ProdavnicaAutoDelova.FrmBrisanjeDobavljaca"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProdavnicaAutoDelova"
+        mc:Ignorable="d"
+        Title="frmBrisanjeDobavljaca" Height="350" Width="525">
+    <Grid>
+        <Label x:Name="label" Content="Sifra dobavljaca" HorizontalAlignment="Left" Margin="44,25,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Naziv firme" HorizontalAlignment="Left" Margin="44,107,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbSifraDobavljaca" HorizontalAlignment="Left" Height="23" Margin="176,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" PreviewTextInput="tbSifraDobavljaca_PreviewTextInput"/>
+        <Button x:Name="btnProvera" Content="Provera" HorizontalAlignment="Left" Margin="367,29,0,0" VerticalAlignment="Top" Width="75" Click="btnProvera_Click"/>
+        <TextBox x:Name="tbNazivFirme" HorizontalAlignment="Left" Height="23" Margin="176,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsEnabled="False" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnPotvrdi" Content="Potvrdi" HorizontalAlignment="Left" Margin="59,205,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="btnPotvrdi_Click"/>
+        <Button x:Name="btnOdustani" Content="Odustani" HorizontalAlignment="Left" Margin="259,205,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Grid.ColumnSpan="2" Click="btnOdustani_Click"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ProdavnicaAutoDelova" Class="ProdavnicaAutoDelovaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=srkitheboss-pc\sqlexpress;Initial Catalog=ProdavnicaAutoDelova;Integrated Security=True" SettingsObjectName="ProdavnicaAutoDelova.Properties.Settings" SettingsPropertyName="ProdavnicaAutoDelovaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AutoDeo" Member="AutoDeos">
+    <Type Name="AutoDeo">
+      <Column Name="sifraAutoDela" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cena" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Opis" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="sifraDobavljaca" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AutoDeo_Magacin" Member="Magacins" ThisKey="sifraAutoDela" OtherKey="SifraAutoDela" Type="Magacin" />
+      <Association Name="AutoDeo_StavkaRacuna" Member="StavkaRacunas" ThisKey="sifraAutoDela" OtherKey="SifraAutoDela" Type="StavkaRacuna" />
+      <Association Name="Dobavljac_AutoDeo" Member="Dobavljac" ThisKey="sifraDobavljaca" OtherKey="sifraDobavljaca" Type="Dobavljac" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Dobavljac" Member="Dobavljacs">
+    <Type Name="Dobavljac">
+      <Column Name="sifraDobavljaca" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nazivFirme" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="brTelefona" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="adresaDobavljaca" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Dobavljac_AutoDeo" Member="AutoDeos" ThisKey="sifraDobavljaca" OtherKey="sifraDobavljaca" Type="AutoDeo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Korisnik" Member="Korisniks">
+    <Type Name="Korisnik">
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ime" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="prezime" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Korisnik_Racun" Member="Racuns" ThisKey="username" OtherKey="Korisnik" Type="Racun" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Magacin" Member="Magacins">
+    <Type Name="Magacin">
+      <Column Name="RedniBroj" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SifraAutoDela" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Kolicina" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AutoDeo_Magacin" Member="AutoDeo" ThisKey="SifraAutoDela" OtherKey="sifraAutoDela" Type="AutoDeo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Racun" Member="Racuns">
+    <Type Name="Racun">
+      <Column Name="SifraRacuna" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UkupnaVrednost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Korisnik" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Racun_StavkaRacuna" Member="StavkaRacunas" ThisKey="SifraRacuna" OtherKey="SifraRacuna" Type="StavkaRacuna" />
+      <Association Name="Korisnik_Racun" Member="Korisnik1" ThisKey="Korisnik" OtherKey="username" Type="Korisnik" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StavkaRacuna" Member="StavkaRacunas">
+    <Type Name="StavkaRacuna">
+      <Column Name="SifraRacuna" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RedniBroj" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SifraAutoDela" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Kolicina" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Vrednost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AutoDeo_StavkaRacuna" Member="AutoDeo" ThisKey="SifraAutoDela" OtherKey="sifraAutoDela" Type="AutoDeo" IsForeignKey="true" />
+      <Association Name="Racun_StavkaRacuna" Member="Racun" ThisKey="SifraRacuna" OtherKey="SifraRacuna" Type="Racun" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

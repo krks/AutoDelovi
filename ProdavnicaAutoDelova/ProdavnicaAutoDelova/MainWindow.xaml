@@ -1,0 +1,17 @@
+﻿<Window x:Class="ProdavnicaAutoDelova.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProdavnicaAutoDelova"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="btnUnosAutoDela" Content="Unos auto dela" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnUnosAutoDela_Click"/>
+        <Button x:Name="btnUnosKolicine" Content="Dodaj auto deo u magacin" HorizontalAlignment="Left" Margin="183,58,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnUnosKolicine_Click"/>
+        <Button x:Name="btnIzmenaDobavljaca" Content="Izmeni dobavljaca" HorizontalAlignment="Left" Margin="365,58,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnIzmenaDobavljaca_Click"/>
+        <Button x:Name="btnBrisanjeDobavljaca" Content="Izbrisi dobavljaca" HorizontalAlignment="Left" Margin="283,136,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnBrisanjeDobavljaca_Click"/>
+        <Button x:Name="btnTraziAutoDeo" Content="Trazi auto deo" HorizontalAlignment="Left" Margin="93,136,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnTraziAutoDeo_Click"/>
+
+    </Grid>
+</Window>
