@@ -28,7 +28,8 @@ namespace ProdavnicaAutoDelova
 
         private void btnProvera_Click(object sender, RoutedEventArgs e)
         {
-            int sifra = Int32.Parse(tbSifraAutoDela.Text); ;
+            int sifra = 0;
+            Int32.TryParse(tbSifraAutoDela.Text, out sifra); 
             
             try
             {

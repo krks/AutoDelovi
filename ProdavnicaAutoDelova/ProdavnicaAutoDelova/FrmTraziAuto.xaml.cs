@@ -35,6 +35,7 @@ namespace ProdavnicaAutoDelova
             {
                 var autoDelovi = db.AutoDeos;
                 dataGrid.ItemsSource = autoDelovi;
+                IzmenaTabele();
             }
             else
             {
@@ -51,15 +52,12 @@ namespace ProdavnicaAutoDelova
                 else
                 {
                     dataGrid.ItemsSource = autoDeo;
+                    IzmenaTabele();
                 }
                 
             }
 
-            dataGrid.Columns[6].Visibility = Visibility.Collapsed;
-            dataGrid.Columns[5].Visibility = Visibility.Collapsed;
-            dataGrid.Columns[4].Header = "Kolicina";
-            dataGrid.Columns[4].Visibility = Visibility.Collapsed;
-            dataGrid.Columns[0].Header = "Sifra";
+            
 
 
 
@@ -70,6 +68,15 @@ namespace ProdavnicaAutoDelova
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void IzmenaTabele()
+        {
+            dataGrid.Columns[6].Visibility = Visibility.Collapsed;
+            dataGrid.Columns[5].Visibility = Visibility.Collapsed;
+            dataGrid.Columns[4].Header = "Kolicina";
+            dataGrid.Columns[4].Visibility = Visibility.Collapsed;
+            dataGrid.Columns[0].Header = "Sifra";
         }
     }
 }

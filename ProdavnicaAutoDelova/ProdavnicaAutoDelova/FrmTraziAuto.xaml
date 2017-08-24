@@ -8,7 +8,7 @@
         Title="frmTraziAuto" Height="350" Width="525">
     <Grid>
         <Label x:Name="label" Content="Sifra auto dela" HorizontalAlignment="Left" Margin="30,22,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSifraAutoDela" HorizontalAlignment="Left" Height="23" Margin="156,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" PreviewTextInput="tbSifraAutoDela_PreviewTextInput"/>
+        <TextBox x:Name="tbSifraAutoDela" HorizontalAlignment="Left" Height="23" Margin="156,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" PreviewTextInput="tbSifraAutoDela_PreviewTextInput" MaxLength="5"/>
         <Button x:Name="btnProvera" Content="Provera" HorizontalAlignment="Left" Margin="343,26,0,0" VerticalAlignment="Top" Width="75" Click="btnProvera_Click"/>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="55,67,0,0" VerticalAlignment="Top" Height="181" Width="363">
             <DataGrid.DataContext>
