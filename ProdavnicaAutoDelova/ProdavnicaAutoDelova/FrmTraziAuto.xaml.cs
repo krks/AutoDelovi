@@ -33,15 +33,37 @@ namespace ProdavnicaAutoDelova
 
             if (sifra == 0)
             {
-                var autoDelovi = db.AutoDeos;
+                //var autoDelovi = db.AutoDeos;
+
+                var autoDelovi = from a in db.AutoDeos
+                        join d in db.Dobavljacs on a.sifraDobavljaca equals d.sifraDobavljaca
+                        join m in db.Magacins on a.sifraAutoDela equals m.SifraAutoDela
+                        select new
+                        {
+                            a.sifraAutoDela, a.Opis, a.Cena, m.Kolicina, d.nazivFirme
+                        };
+
+
                 dataGrid.ItemsSource = autoDelovi;
                 IzmenaTabele();
             }
             else
             {
-                var autoDeo = db.AutoDeos.Where(x => x.sifraAutoDela == sifra);
+                var autoDeo = from a in db.AutoDeos
+                              join d in db.Dobavljacs on a.sifraDobavljaca equals d.sifraDobavljaca
+                              join m in db.Magacins on a.sifraAutoDela equals m.SifraAutoDela
+                              where a.sifraAutoDela == sifra
+                              select new
+                              {
+                                  a.sifraAutoDela,
+                                  a.Opis,
+                                  a.Cena,
+                                  m.Kolicina,
+                                  d.nazivFirme
+                              };
+                              
 
-                if(autoDeo.SingleOrDefault() == null)
+                if (autoDeo.SingleOrDefault() == null)
                 {
                     MessageBox.Show("Auto deo nije pronadjen",
                     "Obavestenje o upisu u bazu",
@@ -72,11 +94,8 @@ namespace ProdavnicaAutoDelova
 
         private void IzmenaTabele()
         {
-            dataGrid.Columns[6].Visibility = Visibility.Collapsed;
-            dataGrid.Columns[5].Visibility = Visibility.Collapsed;
-            dataGrid.Columns[4].Header = "Kolicina";
-            dataGrid.Columns[4].Visibility = Visibility.Collapsed;
             dataGrid.Columns[0].Header = "Sifra";
+            dataGrid.Columns[4].Header = "Dobavljac";
         }
     }
 }
