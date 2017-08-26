@@ -59,25 +59,42 @@ namespace ProdavnicaAutoDelova
             int sifra = Int32.Parse(tbSifraDobavljaca.Text);
 
             var d = db.Dobavljacs.SingleOrDefault(x => x.sifraDobavljaca == sifra);
-            IQueryable<AutoDeo> a = db.AutoDeos.Where(x => x.sifraDobavljaca == d.sifraDobavljaca);
-            IQueryable<StavkaRacuna> r = null;
-            foreach (var ad in a)
+            var deleteAutoDeo =
+                from ad in db.AutoDeos
+                where ad.sifraDobavljaca == sifra
+                select ad;
+
+            foreach (var autoDeo in deleteAutoDeo)
             {
-                r = db.StavkaRacunas.Where(x => x.SifraAutoDela == ad.sifraAutoDela);
+                db.AutoDeos.DeleteOnSubmit(autoDeo);
             }
 
+            var deleteMagacin =
+                from mg in db.Magacins
+                join ad in db.AutoDeos on mg.SifraAutoDela equals ad.sifraAutoDela
+                where mg.SifraAutoDela == ad.sifraAutoDela && ad.sifraDobavljaca == sifra
+                select mg;
+
+            foreach (var mag in deleteMagacin)
+            {
+                db.Magacins.DeleteOnSubmit(mag);
+            }
+
+            var deleteStavka =
+                from st in db.StavkaRacunas
+                join ad in db.AutoDeos on st.SifraAutoDela equals ad.sifraAutoDela
+                where st.SifraAutoDela == ad.sifraAutoDela && ad.sifraDobavljaca == sifra
+                select st;
+
+            foreach (var st in deleteStavka)
+            {
+                db.StavkaRacunas.DeleteOnSubmit(st);
+            }
+            
             try
             {
                 db.Dobavljacs.DeleteOnSubmit(d);
-                foreach (var ad in a)
-                {
-                    db.AutoDeos.DeleteOnSubmit(ad);
-                }
-                foreach (var sr in r)
-                {
-                    db.StavkaRacunas.DeleteOnSubmit(sr);
-                }
-
+                
                 db.SubmitChanges();
 
                 MessageBox.Show("Dobavljac je uspesno obrisan iz baze",

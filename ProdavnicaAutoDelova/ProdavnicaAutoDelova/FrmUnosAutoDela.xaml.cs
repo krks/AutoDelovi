@@ -74,9 +74,14 @@ namespace ProdavnicaAutoDelova
                 sifraDobavljaca = Int32.Parse(tbSifraDobavljaca.Text)
             };
 
+            Magacin ma = new Magacin();
+            ma.SifraAutoDela = Int32.Parse(tbSifraAutoDela.Text);
+            ma.Kolicina = 0;
+
             try
             {
                 db.AutoDeos.InsertOnSubmit(ad);
+                db.Magacins.InsertOnSubmit(ma);
                 db.SubmitChanges();
 
                 MessageBox.Show("Auto deo je uspesno upisan u bazu",
